@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autocentrum Sedláček</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f8ff;
+  --bg2: #ffffff;
+  --bg3: #eef2fb;
+  --blue: #1d4ed8;
+  --blue2: #1e40af;
+  --blue-light: #3b82f6;
+  --blue-pale: #dbeafe;
+  --text: #0f172a;
+  --text2: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --border2: #cbd5e1;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:16px;line-height:1.6;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;letter-spacing:1px;color:var(--text);}
+.nav-logo span{color:var(--blue);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.nav-cta{background:var(--blue);color:#fff;padding:8px 20px;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;transition:background .2s;}
+.nav-cta:hover{background:var(--blue2);}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.burger span{width:22px;height:2px;background:var(--text);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid var(--border);}
+.mobile-menu a{padding:14px 5%;color:var(--text);text-decoration:none;font-weight:500;border-bottom:1px solid var(--border);font-size:15px;}
+.mobile-menu a:hover{color:var(--blue);background:var(--bg3);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 5% 60px;position:relative;overflow:hidden;background:linear-gradient(135deg,#eff6ff 0%,#f5f8ff 50%,#e0f2fe 100%);}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);}
+.hero-content{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid #bfdbfe;color:var(--blue);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:1.5rem;}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue-light);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:800;line-height:1;letter-spacing:-1px;margin-bottom:1.25rem;color:var(--text);}
+h1 span{color:var(--blue);}
+.hero-sub{font-size:1.15rem;color:var(--text2);max-width:520px;margin-bottom:2rem;line-height:1.7;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--blue);color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:.2s;display:inline-block;box-shadow:0 4px 14px rgba(29,78,216,0.25);}
+.btn-primary:hover{background:var(--blue2);transform:translateY(-1px);}
+.btn-ghost{border:1.5px solid var(--border2);color:var(--text2);padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:.2s;display:inline-block;background:#fff;}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;flex-wrap:wrap;}
+.stat{border-left:3px solid var(--blue);padding-left:1rem;}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;color:var(--text);}
+.stat-label{font-size:13px;color:var(--muted);}
+
+/* SECTIONS */
+section{padding:80px 5%;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.1;margin-bottom:1rem;color:var(--text);}
+.section-sub{color:var(--muted);max-width:540px;margin-bottom:3rem;}
+
+/* SERVICES */
+#sluzby{background:#fff;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
+.service-card{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:1.75rem 1.5rem;transition:.2s;}
+.service-card:hover{border-color:var(--blue-light);background:#fff;transform:translateY(-2px);box-shadow:0 4px 20px rgba(29,78,216,0.08);}
+.service-icon{font-size:1.75rem;margin-bottom:.75rem;}
+.service-name{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;color:var(--text);}
+.service-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* CENIK */
+#cenik{background:var(--bg);}
+.cenik-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.cenik-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+.cenik-card-header{background:var(--bg3);padding:1rem 1.5rem;border-bottom:1.5px solid var(--border);}
+.cenik-card-title{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:700;color:var(--blue);}
+.cenik-card-note{font-size:12px;color:var(--muted);margin-top:2px;}
+.cenik-table{width:100%;border-collapse:collapse;}
+.cenik-table tr{border-bottom:1px solid var(--border);}
+.cenik-table tr:last-child{border-bottom:none;}
+.cenik-table td{padding:.7rem 1.5rem;font-size:14px;}
+.cenik-table td:first-child{color:var(--text2);}
+.cenik-table td:last-child{text-align:right;font-weight:700;color:var(--blue2);white-space:nowrap;}
+.cenik-note{margin-top:1.5rem;background:var(--blue-pale);border:1px solid #bfdbfe;border-radius:8px;padding:1rem 1.25rem;font-size:13px;color:var(--text2);}
+.cenik-note strong{color:var(--blue);}
+
+/* PROC MY */
+#proc{background:#fff;}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;}
+.why-card{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:1.75rem 1.5rem;position:relative;overflow:hidden;transition:.2s;}
+.why-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:.3s;}
+.why-card:hover::after{transform:scaleX(1);}
+.why-card:hover{box-shadow:0 4px 20px rgba(29,78,216,0.08);}
+.why-num{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:800;color:rgba(29,78,216,0.08);line-height:1;margin-bottom:.5rem;}
+.why-title{font-weight:700;font-size:1rem;margin-bottom:.5rem;color:var(--text);}
+.why-text{font-size:14px;color:var(--muted);line-height:1.6;}
+
+/* OPENING */
+#oteviraci{background:var(--bg);}
+.hours-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:600px;}
+.hours-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;}
+.hours-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:1rem;letter-spacing:.5px;}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:14px;}
+.hours-row:last-child{border-bottom:none;}
+.hours-row .day{color:var(--muted);}
+.hours-row .time{font-weight:600;color:var(--text);}
+.hours-row .closed{color:#dc2626;font-weight:600;}
+.open-badge{display:inline-flex;align-items:center;gap:6px;background:#dcfce7;border:1px solid #86efac;color:#166534;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:1.5rem;}
+.open-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;}
+
+/* KONTAKT */
+#kontakt{background:#fff;}
+.kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+.contact-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;}
+.contact-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-pale);border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.contact-label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px;}
+.contact-val{font-size:1rem;font-weight:600;color:var(--text);}
+.contact-val a{color:var(--blue);text-decoration:none;}
+.contact-val a:hover{text-decoration:underline;}
+.cta-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1.5px solid #bfdbfe;border-radius:12px;padding:2rem;text-align:center;}
+.cta-box h3{font-family:'Barlow Condensed',sans-serif;font-size:1.75rem;font-weight:800;margin-bottom:.75rem;color:var(--text);}
+.cta-box p{color:var(--text2);font-size:14px;margin-bottom:1.5rem;}
+.cta-tel{display:block;font-family:'Barlow Condensed',sans-serif;font-size:2.25rem;font-weight:800;color:var(--blue);text-decoration:none;margin-bottom:1.5rem;letter-spacing:1px;}
+.cta-tel:hover{color:var(--blue2);}
+
+/* FOOTER */
+footer{background:var(--text);padding:2rem 5%;text-align:center;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:.5rem;color:#fff;}
+.footer-logo span{color:#60a5fa;}
+.footer-text{font-size:13px;color:#94a3b8;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none;}
+  .burger{display:flex;}
+  .kontakt-grid{grid-template-columns:1fr;}
+  .hours-wrap{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">AUTO<span>CENTRUM</span> SEDLÁČEK</div>
+    <ul class="nav-links">
+      <li><a href="#sluzby">Služby</a></li>
+      <li><a href="#cenik">Ceník</a></li>
+      <li><a href="#proc">Proč my</a></li>
+      <li><a href="#oteviraci">Otevírací doba</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="tel:+420608377732" class="nav-cta">Zavolat</a>
+    <div class="burger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sluzby" onclick="toggleMenu()">Služby</a>
+    <a href="#cenik" onclick="toggleMenu()">Ceník</a>
+    <a href="#proc" onclick="toggleMenu()">Proč my</a>
+    <a href="#oteviraci" onclick="toggleMenu()">Otevírací doba</a>
+    <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
+    <a href="tel:+420608377732" onclick="toggleMenu()" style="color:var(--blue);font-weight:700;">📞 +420 608 377 732</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">Autocentrum v Ostravě</div>
+    <h1>Autocentrum<br><span>Sedláček</span></h1>
+    <p class="hero-sub">Profesionální péče o vaše vozidlo. STK, přezutí, přehození kol a vše co váš automobil potřebuje — rychle a za férové ceny.</p>
+    <div class="hero-actions">
+      <a href="tel:+420608377732" class="btn-primary">📞 Zavolat: +420 608 377 732</a>
+      <a href="#cenik" class="btn-ghost">Zobrazit ceník</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">STK</div>
+        <div class="stat-label">od 3 600 Kč</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Přezutí</div>
+        <div class="stat-label">od 680 Kč</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Po–Pá</div>
+        <div class="stat-label">8:00 – 16:00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLUZBY -->
+<section id="sluzby">
+  <div class="section-inner">
+    <div class="section-label">Co nabízíme</div>
+    <h2 class="section-title">Naše služby</h2>
+    <p class="section-sub">Komplexní péče o osobní vozy, dodávky i SUV. Vše na jednom místě.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <div class="service-name">STK + Emise</div>
+        <div class="service-desc">Technická kontrola a měření emisí včetně LPG.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <div class="service-name">Přehození kol</div>
+        <div class="service-desc">Výměna kol na ráfcích — osobní, dodávky, plech i litá.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛞</div>
+        <div class="service-name">Přezutí kol</div>
+        <div class="service-desc">Přezutí pneu včetně vyvážení. Osobní, dodávky, SUV.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <div class="service-name">Oprava defektu</div>
+        <div class="service-desc">Rychlá oprava defektu za 350 Kč.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚖️</div>
+        <div class="service-name">Vyvážení</div>
+        <div class="service-desc">Přesné vyvážení kol. Závaží 5 Kč / 5g.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗑️</div>
+        <div class="service-name">Likvidace pneu</div>
+        <div class="service-desc">Ekologická likvidace pneumatik za 40 Kč / ks.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENIK -->
+<section id="cenik">
+  <div class="section-inner">
+    <div class="section-label">Transparentní ceny</div>
+    <h2 class="section-title">Ceník služeb</h2>
+    <p class="section-sub">Ceny jsou konečné, bez skrytých poplatků. U přehození a přezutí platí ceny za sadu 4 ks.</p>
+    <div class="cenik-grid">
+      <div class="cenik-card">
+        <div class="cenik-card-header">
+          <div class="cenik-card-title">STK + EMISE</div>
+        </div>
+        <table class="cenik-table">
+          <tr><td>STK + Emise</td><td>3 600 Kč</td></tr>
+          <tr><td>STK + Emise + LPG</td><td>3 900 Kč</td></tr>
+        </table>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-card-header">
+          <div class="cenik-card-title">Přehození kol</div>
+          <div class="cenik-card-note">Cena za sadu 4 ks / dle velikosti</div>
+        </div>
+        <table class="cenik-table">
+          <tr><td>Osobní — plech</td><td>500 / 600 Kč</td></tr>
+          <tr><td>Osobní — lite do 17"</td><td>600 / 720 Kč</td></tr>
+          <tr><td>Osobní — lite nad 18"</td><td>700 / 850 Kč</td></tr>
+          <tr><td>Dodávka</td><td>700 / 850 Kč</td></tr>
+        </table>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-card-header">
+          <div class="cenik-card-title">Přezutí kol</div>
+          <div class="cenik-card-note">Včetně vyvážení / cena za sadu 4 ks</div>
+        </div>
+        <table class="cenik-table">
+          <tr><td>Osobní — plech</td><td>680 / 820 Kč</td></tr>
+          <tr><td>Osobní — lite do 17"</td><td>780 / 940 Kč</td></tr>
+          <tr><td>Osobní — lite nad 18"</td><td>880 / 1 060 Kč</td></tr>
+          <tr><td>Dodávka, SUV</td><td>880 / 1 060 Kč</td></tr>
+        </table>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-card-header">
+          <div class="cenik-card-title">Ostatní služby</div>
+        </div>
+        <table class="cenik-table">
+          <tr><td>Oprava defektu</td><td>350 Kč</td></tr>
+          <tr><td>Závaží</td><td>5 Kč / 5g</td></tr>
+          <tr><td>Ventil</td><td>40 Kč / ks</td></tr>
+          <tr><td>Likvidace pneu</td><td>40 Kč / ks</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="cenik-note"><strong>Poznámka:</strong> Ceny za přehození a přezutí jsou uvedeny ve formátu základní cena / cena s vyšší sazbou dle velikosti a typu ráfku. V případě dotazů nás neváhejte kontaktovat.</div>
+  </div>
+</section>
+
+<!-- PROC MY -->
+<section id="proc">
+  <div class="section-inner">
+    <div class="section-label">Naše výhody</div>
+    <h2 class="section-title">Proč nás zvolit?</h2>
+    <p class="section-sub">Rodinné autocentrum s osobním přístupem a profesionálním vybavením.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-title">Férové ceny</div>
+        <div class="why-text">Transparentní ceník bez skrytých poplatků. Cenu znáte předem.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-title">Rychlé provedení</div>
+        <div class="why-text">Přezutí a přehození kol zvládneme rychle, abyste zbytečně nečekali.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-title">Osobní přístup</div>
+        <div class="why-text">Nejsme velký řetězec. Každý zákazník dostane plnou pozornost.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-title">Komplexní servis</div>
+        <div class="why-text">STK, emise, kola, defekty — vše na jednom místě bez zbytečného cestování.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OTEVIRACI DOBA -->
+<section id="oteviraci">
+  <div class="section-inner">
+    <div class="section-label">Kdy nás najdete</div>
+    <h2 class="section-title">Otevírací doba</h2>
+    <div class="open-badge">Otevřeno Po–Pá 8:00–16:00</div>
+    <div class="hours-wrap">
+      <div class="hours-card">
+        <div class="hours-title">PRACOVNÍ DNY</div>
+        <div class="hours-row"><span class="day">Pondělí</span><span class="time">8:00 – 16:00</span></div>
+        <div class="hours-row"><span class="day">Úterý</span><span class="time">8:00 – 16:00</span></div>
+        <div class="hours-row"><span class="day">Středa</span><span class="time">8:00 – 16:00</span></div>
+        <div class="hours-row"><span class="day">Čtvrtek</span><span class="time">8:00 – 16:00</span></div>
+        <div class="hours-row"><span class="day">Pátek</span><span class="time">8:00 – 16:00</span></div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-title">VÍKEND</div>
+        <div class="hours-row"><span class="day">Sobota</span><span class="closed">Zavřeno</span></div>
+        <div class="hours-row"><span class="day">Neděle</span><span class="closed">Zavřeno</span></div>
+        <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.6;">
+          Provoz celoročně<br>1. ledna – 31. prosince
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="section-inner">
+    <div class="section-label">Spojte se s námi</div>
+    <h2 class="section-title">Kontakt</h2>
+    <div class="kontakt-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Telefon</div>
+            <div class="contact-val"><a href="tel:+420608377732">+420 608 377 732</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">E-mail</div>
+            <div class="contact-val"><a href="mailto:lukas.sedlacekk@seznam.cz">lukas.sedlacekk@seznam.cz</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Otevřeno</div>
+            <div class="contact-val">Po – Pá: 8:00 – 16:00</div>
+          </div>
+        </div>
+      </div>
+      <div class="cta-box">
+        <h3>Objednání a dotazy</h3>
+        <p>Zavolejte nám nebo napište e-mail. Rádi odpovíme na veškeré dotazy a domluvíme termín.</p>
+        <a href="tel:+420608377732" class="cta-tel">+420 608 377 732</a>
+        <a href="mailto:lukas.sedlacekk@seznam.cz" class="btn-primary" style="display:inline-block;">Napsat e-mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">AUTO<span>SERVIS</span> LUKÁŠ SEDLÁČEK</div>
+    <p class="footer-text">© 2025 Autocentrum Sedláček · +420 608 377 732 · lukas.sedlacekk@seznam.cz</p>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  const m=document.getElementById('mobileMenu');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('mobileMenu').style.display='none';
+  });
+});
+</script>
+</body>
+</html>
