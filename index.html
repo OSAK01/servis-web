@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f5f8ff;
+  --bg: #faf5f5;
   --bg2: #ffffff;
-  --bg3: #eef2fb;
-  --blue: #1d4ed8;
-  --blue2: #1e40af;
-  --blue-light: #3b82f6;
-  --blue-pale: #dbeafe;
+  --bg3: #fbeeee;
+  --blue: #dc2626;
+  --blue2: #b91c1c;
+  --blue-light: #ef4444;
+  --blue-pale: #fee2e2;
   --text: #0f172a;
   --text2: #334155;
   --muted: #64748b;
@@ -37,17 +37,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .mobile-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid var(--border);}
 .mobile-menu a{padding:14px 5%;color:var(--text);text-decoration:none;font-weight:500;border-bottom:1px solid var(--border);font-size:15px;}
 .mobile-menu a:hover{color:var(--blue);background:var(--bg3);}
-.hero{min-height:100vh;display:flex;align-items:center;padding:80px 5% 60px;position:relative;overflow:hidden;background:linear-gradient(135deg,#eff6ff 0%,#f5f8ff 50%,#e0f2fe 100%);}
-.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);}
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 5% 60px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fff5f5 0%,#faf5f5 50%,#fde8e8 100%);}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,0.08) 0%,transparent 70%);}
 .hero-content{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid #bfdbfe;color:var(--blue);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:1.5rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid #fecaca;color:var(--blue);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:1.5rem;}
 .hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue-light);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:800;line-height:1;letter-spacing:-1px;margin-bottom:1.25rem;color:var(--text);}
 h1 span{color:var(--blue);}
 .hero-sub{font-size:1.15rem;color:var(--text2);max-width:520px;margin-bottom:2rem;line-height:1.7;}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-primary{background:var(--blue);color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:.2s;display:inline-block;box-shadow:0 4px 14px rgba(29,78,216,0.25);}
+.btn-primary{background:var(--blue);color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:.2s;display:inline-block;box-shadow:0 4px 14px rgba(220,38,38,0.25);}
 .btn-primary:hover{background:var(--blue2);transform:translateY(-1px);}
 .btn-ghost{border:1.5px solid var(--border2);color:var(--text2);padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:.2s;display:inline-block;background:#fff;}
 .btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
@@ -63,7 +63,7 @@ section{padding:80px 5%;}
 #sluzby{background:#fff;}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
 .service-card{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:1.75rem 1.5rem;transition:.2s;}
-.service-card:hover{border-color:var(--blue-light);background:#fff;transform:translateY(-2px);box-shadow:0 4px 20px rgba(29,78,216,0.08);}
+.service-card:hover{border-color:var(--blue-light);background:#fff;transform:translateY(-2px);box-shadow:0 4px 20px rgba(220,38,38,0.08);}
 .service-icon{font-size:1.75rem;margin-bottom:.75rem;}
 .service-name{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;color:var(--text);}
 .service-desc{font-size:13px;color:var(--muted);line-height:1.5;}
@@ -79,15 +79,19 @@ section{padding:80px 5%;}
 .cenik-table td{padding:.7rem 1.5rem;font-size:14px;}
 .cenik-table td:first-child{color:var(--text2);}
 .cenik-table td:last-child{text-align:right;font-weight:700;color:var(--blue2);white-space:nowrap;}
-.cenik-note{margin-top:1.5rem;background:var(--blue-pale);border:1px solid #bfdbfe;border-radius:8px;padding:1rem 1.25rem;font-size:13px;color:var(--text2);}
+.cenik-note{margin-top:1.5rem;background:var(--blue-pale);border:1px solid #fecaca;border-radius:8px;padding:1rem 1.25rem;font-size:13px;color:var(--text2);}
 .cenik-note strong{color:var(--blue);}
+.stk-box{padding:1.25rem 1.5rem;}
+.stk-box p{font-size:14px;color:var(--text2);margin-bottom:.75rem;line-height:1.6;}
+.stk-tel{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;padding:8px 16px;border-radius:7px;text-decoration:none;font-weight:600;font-size:14px;}
+.stk-tel:hover{background:var(--blue2);}
 #proc{background:#fff;}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;}
 .why-card{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:1.75rem 1.5rem;position:relative;overflow:hidden;transition:.2s;}
 .why-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:.3s;}
 .why-card:hover::after{transform:scaleX(1);}
-.why-card:hover{box-shadow:0 4px 20px rgba(29,78,216,0.08);}
-.why-num{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:800;color:rgba(29,78,216,0.08);line-height:1;margin-bottom:.5rem;}
+.why-card:hover{box-shadow:0 4px 20px rgba(220,38,38,0.08);}
+.why-num{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:800;color:rgba(220,38,38,0.08);line-height:1;margin-bottom:.5rem;}
 .why-title{font-weight:700;font-size:1rem;margin-bottom:.5rem;color:var(--text);}
 .why-text{font-size:14px;color:var(--muted);line-height:1.6;}
 #oteviraci{background:var(--bg);}
@@ -98,18 +102,18 @@ section{padding:80px 5%;}
 .hours-row:last-child{border-bottom:none;}
 .hours-row .day{color:var(--muted);}
 .hours-row .time{font-weight:600;color:var(--text);}
-.hours-row .closed{color:#dc2626;font-weight:600;}
+.hours-row .closed{color:#b91c1c;font-weight:600;}
 .open-badge{display:inline-flex;align-items:center;gap:6px;background:#dcfce7;border:1px solid #86efac;color:#166534;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:1.5rem;}
 .open-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;}
 #kontakt{background:#fff;}
 .kontakt-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
 .contact-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;}
-.contact-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-pale);border:1px solid #bfdbfe;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.contact-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-pale);border:1px solid #fecaca;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
 .contact-label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px;}
 .contact-val{font-size:1rem;font-weight:600;color:var(--text);}
 .contact-val a{color:var(--blue);text-decoration:none;}
 .contact-val a:hover{text-decoration:underline;}
-.cta-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1.5px solid #bfdbfe;border-radius:12px;padding:2rem;text-align:center;}
+.cta-box{background:linear-gradient(135deg,#fff5f5,#fee2e2);border:1.5px solid #fecaca;border-radius:12px;padding:2rem;text-align:center;}
 .cta-box h3{font-family:'Barlow Condensed',sans-serif;font-size:1.75rem;font-weight:800;margin-bottom:.75rem;color:var(--text);}
 .cta-box p{color:var(--text2);font-size:14px;margin-bottom:1.5rem;}
 .cta-tel{display:block;font-family:'Barlow Condensed',sans-serif;font-size:2.25rem;font-weight:800;color:var(--blue);text-decoration:none;margin-bottom:1.5rem;letter-spacing:1px;}
@@ -117,7 +121,7 @@ section{padding:80px 5%;}
 footer{background:var(--text);padding:2rem 5%;text-align:center;}
 .footer-inner{max-width:1100px;margin:0 auto;}
 .footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:.5rem;color:#fff;}
-.footer-logo span{color:#60a5fa;}
+.footer-logo span{color:#f87171;}
 .footer-text{font-size:13px;color:#94a3b8;}
 @media(max-width:768px){
   .nav-links,.nav-cta{display:none;}
@@ -160,8 +164,8 @@ footer{background:var(--text);padding:2rem 5%;text-align:center;}
       <a href="#cenik" class="btn-ghost">Zobrazit ceník</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">STK</div><div class="stat-label">od 3 600 Kč</div></div>
-      <div class="stat"><div class="stat-num">Přezutí</div><div class="stat-label">od 680 Kč</div></div>
+      <div class="stat"><div class="stat-num">STK</div><div class="stat-label">dle domluvy</div></div>
+      <div class="stat"><div class="stat-num">Přezutí</div><div class="stat-label">od 780 Kč bez DPH</div></div>
       <div class="stat"><div class="stat-num">Po–Pá</div><div class="stat-label">8:00 – 16:00</div></div>
     </div>
   </div>
@@ -172,10 +176,10 @@ footer{background:var(--text);padding:2rem 5%;text-align:center;}
     <h2 class="section-title">Naše služby</h2>
     <p class="section-sub">Komplexní péče o osobní vozy, dodávky i SUV. Vše na jednom místě.</p>
     <div class="services-grid">
-      <div class="service-card"><div class="service-icon">🔍</div><div class="service-name">STK + Emise</div><div class="service-desc">Technická kontrola a měření emisí včetně LPG.</div></div>
+      <div class="service-card"><div class="service-icon">🔍</div><div class="service-name">STK + Emise</div><div class="service-desc">Příprava a vyřízení STK a emisí. Cena dle domluvy.</div></div>
       <div class="service-card"><div class="service-icon">🔄</div><div class="service-name">Přehození kol</div><div class="service-desc">Výměna kol na ráfcích — osobní, dodávky, plech i litá.</div></div>
       <div class="service-card"><div class="service-icon">🛞</div><div class="service-name">Přezutí kol</div><div class="service-desc">Přezutí pneu včetně vyvážení. Osobní, dodávky, SUV.</div></div>
-      <div class="service-card"><div class="service-icon">🔧</div><div class="service-name">Oprava defektu</div><div class="service-desc">Rychlá oprava defektu za 350 Kč.</div></div>
+      <div class="service-card"><div class="service-icon">🔧</div><div class="service-name">Oprava defektu</div><div class="service-desc">Rychlá oprava defektu za 400 Kč bez DPH.</div></div>
       <div class="service-card"><div class="service-icon">⚖️</div><div class="service-name">Vyvážení</div><div class="service-desc">Přesné vyvážení kol. Závaží 5 Kč / 5g.</div></div>
       <div class="service-card"><div class="service-icon">🗑️</div><div class="service-name">Likvidace pneu</div><div class="service-desc">Ekologická likvidace pneumatik za 40 Kč / ks.</div></div>
     </div>
@@ -185,44 +189,47 @@ footer{background:var(--text);padding:2rem 5%;text-align:center;}
   <div class="section-inner">
     <div class="section-label">Transparentní ceny</div>
     <h2 class="section-title">Ceník služeb</h2>
-    <p class="section-sub">Ceny jsou konečné, bez skrytých poplatků. U přehození a přezutí platí ceny za sadu 4 ks.</p>
+    <p class="section-sub">Všechny uvedené ceny jsou bez DPH. U přehození a přezutí platí ceny za sadu 4 ks.</p>
     <div class="cenik-grid">
       <div class="cenik-card">
-        <div class="cenik-card-header"><div class="cenik-card-title">STK + EMISE</div></div>
+        <div class="cenik-card-header">
+          <div class="cenik-card-title">STK + EMISE</div>
+          <div class="cenik-card-note">Příprava a vyřízení STK a emisí</div>
+        </div>
+        <div class="stk-box">
+          <p>Postaráme se o kompletní přípravu a vyřízení STK a emisní kontroly vašeho vozidla. Cena závisí na typu a stavu vozidla.</p>
+          <a href="tel:+420608377732" class="stk-tel">📞 Domluvit cenu</a>
+        </div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-card-header"><div class="cenik-card-title">Přehození kol</div><div class="cenik-card-note">Cena za sadu 4 ks, bez DPH</div></div>
         <table class="cenik-table">
-          <tr><td>STK + Emise</td><td>3 600 Kč</td></tr>
-          <tr><td>STK + Emise + LPG</td><td>3 900 Kč</td></tr>
+          <tr><td>Osobní — plech</td><td>600 Kč</td></tr>
+          <tr><td>Osobní — lite do 17"</td><td>700 Kč</td></tr>
+          <tr><td>Osobní — lite nad 17"</td><td>800 Kč</td></tr>
+          <tr><td>Dodávka</td><td>800 Kč</td></tr>
         </table>
       </div>
       <div class="cenik-card">
-        <div class="cenik-card-header"><div class="cenik-card-title">Přehození kol</div><div class="cenik-card-note">Cena za sadu 4 ks / dle velikosti</div></div>
+        <div class="cenik-card-header"><div class="cenik-card-title">Přezutí kol</div><div class="cenik-card-note">Včetně vyvážení / sada 4 ks, bez DPH</div></div>
         <table class="cenik-table">
-          <tr><td>Osobní — plech</td><td>500 / 600 Kč</td></tr>
-          <tr><td>Osobní — lite do 17"</td><td>600 / 720 Kč</td></tr>
-          <tr><td>Osobní — lite nad 18"</td><td>700 / 850 Kč</td></tr>
-          <tr><td>Dodávka</td><td>700 / 850 Kč</td></tr>
+          <tr><td>Osobní — plech</td><td>780 Kč</td></tr>
+          <tr><td>Osobní — lite do 17"</td><td>880 Kč</td></tr>
+          <tr><td>Osobní — lite nad 17"</td><td>980 Kč</td></tr>
+          <tr><td>Dodávka, SUV</td><td>980 Kč</td></tr>
         </table>
       </div>
       <div class="cenik-card">
-        <div class="cenik-card-header"><div class="cenik-card-title">Přezutí kol</div><div class="cenik-card-note">Včetně vyvážení / cena za sadu 4 ks</div></div>
+        <div class="cenik-card-header"><div class="cenik-card-title">Ostatní služby</div><div class="cenik-card-note">Ceny bez DPH</div></div>
         <table class="cenik-table">
-          <tr><td>Osobní — plech</td><td>680 / 820 Kč</td></tr>
-          <tr><td>Osobní — lite do 17"</td><td>780 / 940 Kč</td></tr>
-          <tr><td>Osobní — lite nad 18"</td><td>880 / 1 060 Kč</td></tr>
-          <tr><td>Dodávka, SUV</td><td>880 / 1 060 Kč</td></tr>
-        </table>
-      </div>
-      <div class="cenik-card">
-        <div class="cenik-card-header"><div class="cenik-card-title">Ostatní služby</div></div>
-        <table class="cenik-table">
-          <tr><td>Oprava defektu</td><td>350 Kč</td></tr>
+          <tr><td>Oprava defektu</td><td>400 Kč</td></tr>
           <tr><td>Závaží</td><td>5 Kč / 5g</td></tr>
           <tr><td>Ventil</td><td>40 Kč / ks</td></tr>
-          <tr><td>Likvidace pneu</td><td>40 Kč / ks</td></tr>
+          <tr><td>Likvidace pneu</td><td>40 Kč</td></tr>
         </table>
       </div>
     </div>
-    <div class="cenik-note"><strong>Poznámka:</strong> Ceny za přehození a přezutí jsou uvedeny ve formátu základní cena / cena s vyšší sazbou dle velikosti a typu ráfku. V případě dotazů nás neváhejte kontaktovat.</div>
+    <div class="cenik-note"><strong>Poznámka:</strong> Všechny ceny v ceníku jsou uvedeny bez DPH. V případě dotazů nás neváhejte kontaktovat.</div>
   </div>
 </section>
 <section id="proc">
