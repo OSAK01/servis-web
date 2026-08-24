@@ -119,6 +119,16 @@ section{padding:80px 5%;}
 .oteviraci-layout{display:grid;grid-template-columns:minmax(0,600px) 1fr;gap:2rem;align-items:start;}
 .oteviraci-layout .map-card{margin-top:0;height:100%;min-height:280px;}
 .oteviraci-layout .map-card iframe{height:100%;min-height:280px;}
+#galerie{background:#fff;}
+.galerie-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;}
+.galerie-item{position:relative;border-radius:12px;overflow:hidden;border:1.5px solid var(--border);aspect-ratio:4/3;background:var(--bg);cursor:zoom-in;}
+.galerie-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;}
+.galerie-item:hover img{transform:scale(1.06);}
+.galerie-empty{grid-column:1/-1;text-align:center;padding:2.5rem 1.5rem;border:1.5px dashed var(--border2);border-radius:12px;color:var(--muted);font-size:14px;}
+.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.94);display:none;align-items:center;justify-content:center;z-index:1000;padding:4vh 4vw;cursor:zoom-out;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.4);}
+.lightbox-close{position:absolute;top:1.25rem;right:1.5rem;color:#fff;font-size:2.25rem;background:none;border:none;cursor:pointer;line-height:1;font-weight:300;}
 .hours-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;}
 .hours-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:1rem;letter-spacing:.5px;}
 .hours-row{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--border);font-size:14px;}
@@ -177,6 +187,7 @@ footer{background:var(--text);padding:2rem 5%;text-align:center;}
       <li><a href="#sluzby">Služby</a></li>
       <li><a href="#cenik">Ceník</a></li>
       <li><a href="#proc">Proč my</a></li>
+      <li><a href="#galerie">Fotogalerie</a></li>
       <li><a href="#oteviraci">Otevírací doba</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -187,6 +198,7 @@ footer{background:var(--text);padding:2rem 5%;text-align:center;}
     <a href="#sluzby" onclick="toggleMenu()">Služby</a>
     <a href="#cenik" onclick="toggleMenu()">Ceník</a>
     <a href="#proc" onclick="toggleMenu()">Proč my</a>
+    <a href="#galerie" onclick="toggleMenu()">Fotogalerie</a>
     <a href="#oteviraci" onclick="toggleMenu()">Otevírací doba</a>
     <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
     <a href="tel:+420608377732" onclick="toggleMenu()" style="color:var(--blue);font-weight:700;">📞 +420 608 377 732</a>
@@ -299,6 +311,16 @@ footer{background:var(--text);padding:2rem 5%;text-align:center;}
     </div>
   </div>
 </section>
+<section id="galerie">
+  <div class="section-inner">
+    <div class="section-label">Podívejte se</div>
+    <h2 class="section-title">Fotogalerie</h2>
+    <p class="section-sub">Fotky z naší dílny a odvedené práce.</p>
+    <div class="galerie-grid" id="galerieGrid">
+      <div class="galerie-empty">Fotky se načítají…</div>
+    </div>
+  </div>
+</section>
 <section id="oteviraci">
   <div class="section-inner">
     <div class="section-label">Kdy nás najdete</div>
@@ -356,6 +378,10 @@ footer{background:var(--text);padding:2rem 5%;text-align:center;}
     <p class="footer-text">© 2026 Autocentrum Sedláček · Drnovice 53, 683 04 Drnovice · +420 608 377 732 · lukas.sedlacekk@seznam.cz</p>
   </div>
 </footer>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Zavřít">&times;</button>
+  <img id="lightboxImg" src="" alt="Fotka z Autocentrum Sedláček">
+</div>
 <script>
 function toggleMenu(){
   const m=document.getElementById('mobileMenu');
@@ -366,6 +392,53 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     document.getElementById('mobileMenu').style.display='none';
   });
 });
+
+// Fotogalerie – fotky se načítají přímo ze složky "galerie" v GitHub repu.
+// Chcete přidat/odebrat fotku? Stačí nahrát/smazat obrázek (jpg/jpeg/png/webp)
+// ve složce "galerie" na GitHubu – na webu se objeví automaticky, nic jiného se upravovat nemusí.
+(function(){
+  const GH_USER = 'OSAK01';
+  const GH_REPO = 'servis-web';
+  const GH_BRANCH = 'main';
+  const FOLDER = 'galerie';
+  const grid = document.getElementById('galerieGrid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  function openLightbox(src){
+    lightboxImg.src = src;
+    lightbox.classList.add('open');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+  lightbox.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+  fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${FOLDER}?ref=${GH_BRANCH}`)
+    .then(res => { if(!res.ok) throw new Error('folder not found'); return res.json(); })
+    .then(files => {
+      const imgs = files
+        .filter(f => f.type === 'file' && /\.(jpe?g|png|webp)$/i.test(f.name))
+        .sort((a,b) => a.name.localeCompare(b.name));
+      if(!imgs.length){
+        grid.innerHTML = '<div class="galerie-empty">Fotky brzy přidáme.</div>';
+        return;
+      }
+      grid.innerHTML = imgs.map(f => `
+        <div class="galerie-item">
+          <img src="${f.download_url}" loading="lazy" alt="Autocentrum Sedláček – fotka">
+        </div>
+      `).join('');
+      grid.querySelectorAll('.galerie-item img').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src));
+      });
+    })
+    .catch(() => {
+      grid.innerHTML = '<div class="galerie-empty">Fotky brzy přidáme.</div>';
+    });
+})();
 </script>
 </body>
 </html>
